@@ -9,6 +9,19 @@
 
 ---
 
+## 🌐 Localhost Access Links
+
+When the server is running (`python server.py`), access the system via:
+
+| Service | Localhost URL | Description |
+|---|---|---|
+| 🖥️ **Web Application** | [http://localhost:3000](http://localhost:3000) | Interactive research assistant, multi-agent chat & literature review generator |
+| 📖 **OpenAPI Swagger Docs** | [http://localhost:3000/docs](http://localhost:3000/docs) | Interactive API documentation for all 5 Orchestrate tools & workflow |
+| ⚡ **System Info & Health** | [http://localhost:3000/api/info](http://localhost:3000/api/info) | Knowledge base statistics & server status |
+| 📊 **Topic Clusters & Dashboard** | [http://localhost:8501](http://localhost:8501) | Streamlit visualization of PCA topic clusters & citation map |
+
+---
+
 ## 📖 Overview
 
 **Research Companion** addresses **Problem Statement 7: Research Agent** for IBM Build-a-Bot (BoB). Researchers, students, and professionals waste dozens of hours wading through dense, fragmented academic papers. Research Companion aggregates, cleans, indexes, and synthesizes multiple research papers using a coordinated multi-agent system.
@@ -83,34 +96,32 @@ It guarantees **zero-hallucination, strict citation-backed responses** (`[Paper 
 
 ### 1. Setup Environment
 ```bash
-git clone <repo_url>
-cd ResearchCompanion-MAS
+git clone https://github.com/Mohan-M04/Research-Agent-MAS.git
+cd Research-Agent-MAS
 pip install -r requirements.txt
 ```
 
-### 2. Configure Credentials (Optional for Live watsonx Cloud)
-Copy `.env.example` to `.env`:
+### 2. Run Locally on Port 3000
 ```bash
-cp .env.example .env
+python server.py
 ```
-Add your `WATSONX_APIKEY` and `WATSONX_PROJECT_ID`.
+Open **[http://localhost:3000](http://localhost:3000)** in your browser!
 
-### 3. Run All Automated Unit & Smoke Tests
+### 3. Run Terminal Interactive Chat
+```bash
+python chat.py
+```
+
+### 4. Run Automated Unit & Smoke Tests
 ```bash
 python tests/run_all_tests.py
 ```
 
-### 4. Start the Interactive Visualization Dashboard
+### 5. Launch the Visual Topic Clusters Dashboard
 ```bash
 streamlit run visualization/app.py
 ```
-Open `http://localhost:8501` to test the live chat, review generator, and 2D topic cluster visualizer.
-
-### 5. Launch the REST API for watsonx Orchestrate Skill Studio
-```bash
-python server.py
-```
-Open `http://localhost:8000/docs` to view the interactive Swagger/OpenAPI UI.
+Open **[http://localhost:8501](http://localhost:8501)** for the 2D topic clusters & radar charts.
 
 ---
 
