@@ -1,0 +1,59 @@
+[project]
+name = "research_companion"
+version = "1.0.0"
+description = "Research Companion — watsonx Orchestrate Multi-Agent Solution"
+
+[deployment.online.parameters]
+# Replace with your watsonx.ai URL and model IDs for your region
+url = "https://us-south.ml.cloud.ibm.com"
+model_id_qa = "ibm/granite-3-3-8b-instruct"
+model_id_summarize = "ibm/granite-3-3-8b-instruct"
+embedding_model_id = "ibm/slate-125m-english-rtrvr"
+
+[deployment.online.hardware]
+# Deployment hardware spec (adjust for production)
+nodes = 1
+size = "small"
+
+[agents.research_coordinator]
+name = "research_coordinator"
+description = "Main user-facing coordinator that routes research requests to sub-agents."
+model_id = "ibm/granite-3-3-8b-instruct"
+max_tokens = 2048
+temperature = 0.1
+
+[agents.pdf_ingestion_agent]
+name = "pdf_ingestion_agent"
+description = "Handles PDF upload, text extraction, chunking, and knowledge base indexing."
+model_id = "ibm/granite-3-3-8b-instruct"
+max_tokens = 1024
+temperature = 0.0
+
+[agents.rag_retrieval_agent]
+name = "rag_retrieval_agent"
+description = "Semantic retrieval agent over indexed research paper chunks."
+model_id = "ibm/granite-3-3-8b-instruct"
+max_tokens = 1024
+temperature = 0.0
+
+[agents.research_qa_agent]
+name = "research_qa_agent"
+description = "Answers user questions using only retrieved research paper content with citations."
+model_id = "ibm/granite-3-3-8b-instruct"
+max_tokens = 2048
+temperature = 0.1
+
+[agents.literature_review_agent]
+name = "literature_review_agent"
+description = "Generates structured literature reviews with citations from retrieved paper chunks."
+model_id = "ibm/granite-3-3-8b-instruct"
+max_tokens = 4096
+temperature = 0.2
+
+[knowledge_base]
+name = "research_papers_kb"
+persist_directory = "./knowledge_base/chroma_db"
+collection_name = "research_papers"
+chunk_size = 512
+chunk_overlap = 64
+top_k = 8

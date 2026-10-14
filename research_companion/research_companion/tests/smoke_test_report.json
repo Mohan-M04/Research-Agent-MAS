@@ -1,0 +1,73 @@
+{
+  "timestamp": "2026-10-14T10:15:09Z",
+  "mode": "synthetic_pdfs",
+  "service": "mock/dev (no credentials)",
+  "total": 9,
+  "passed": 9,
+  "failed": 0,
+  "scenarios": [
+    {
+      "name": "Create 3 synthetic PDFs with PyMuPDF",
+      "passed": true,
+      "reason": "",
+      "response_snippet": "",
+      "service": "local"
+    },
+    {
+      "name": "Import ResearchCompanionWorkflow",
+      "passed": true,
+      "reason": "",
+      "response_snippet": "",
+      "service": "local"
+    },
+    {
+      "name": "Scenario 1: Ingested 3/3 paper(s)",
+      "passed": true,
+      "reason": "",
+      "response_snippet": "",
+      "service": "mock/dev (no credentials)"
+    },
+    {
+      "name": "Scenario 2: Methods question \u2014 has answer + citation",
+      "passed": true,
+      "reason": "",
+      "response_snippet": "BERT Pre-training of Deep Bidirectional Transformers\nBERT Pre-training of Deep Bidirectional Transformers for Language Understanding\nAbstract\nWe introduce BERT (Bidirectional Encoder Representations f [BERT Pre-training of Deep Bidirectional Transformers, Page 1] Deep Residual Learning for Image Rec",
+      "service": "mock/dev (no credentials)"
+    },
+    {
+      "name": "Scenario 3: Limitations question \u2014 has answer + citation",
+      "passed": true,
+      "reason": "",
+      "response_snippet": "Attention Is All You Need\nAttention Is All You Need\nAbstract\nWe propose a new simple network architecture, the Transformer, based solely on attention\nmechanisms,\ndispensing with recurrence and convolu [Attention Is All You Need, Page 1] Deep Residual Learning for Image Recognition\nDeep Residual Lear",
+      "service": "mock/dev (no credentials)"
+    },
+    {
+      "name": "Scenario 4: Research gaps question \u2014 has answer + citation",
+      "passed": true,
+      "reason": "",
+      "response_snippet": "BERT Pre-training of Deep Bidirectional Transformers\nBERT Pre-training of Deep Bidirectional Transformers for Language Understanding\nAbstract\nWe introduce BERT (Bidirectional Encoder Representations f [BERT Pre-training of Deep Bidirectional Transformers, Page 1] Deep Residual Learning for Image Rec",
+      "service": "mock/dev (no credentials)"
+    },
+    {
+      "name": "Scenario 5: Literature review \u2014 has content + citation",
+      "passed": true,
+      "reason": "",
+      "response_snippet": "## 1. Background\n\nAttention Is All You Need\nAttention Is All You Need\nAbstract\nWe propose a new simple network architecture, the Transformer, based solely on attention\nmechanisms,\ndispensing with re [Attention Is All You Need, Page 1] BERT Pre-training of Deep Bidirectional Transformers\nBERT Pre-tra",
+      "service": "mock/dev (no credentials)"
+    },
+    {
+      "name": "Scenario 6: Unrelated question \u2014 exact refusal string",
+      "passed": true,
+      "reason": "",
+      "response_snippet": "This information is not available in the uploaded research papers. I can only answer questions based on the PDFs you have uploaded.",
+      "service": "mock/dev (no credentials)"
+    },
+    {
+      "name": "Scenario 7: Off-topic question \u2014 exact refusal string",
+      "passed": true,
+      "reason": "",
+      "response_snippet": "This information is not available in the uploaded research papers. I can only answer questions based on the PDFs you have uploaded.",
+      "service": "mock/dev (no credentials)"
+    }
+  ]
+}

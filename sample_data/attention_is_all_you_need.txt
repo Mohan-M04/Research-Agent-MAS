@@ -1,0 +1,23 @@
+Attention Is All You Need
+Authors: Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin
+Year: 2017
+
+--- Page 1 ---
+Abstract & Introduction:
+The dominant sequence transduction models are based on complex recurrent or convolutional neural networks that include an encoder and a decoder. The best performing models also connect the encoder and decoder through an attention mechanism. We propose the Transformer, a novel model architecture eschewing recurrence and instead relying entirely on an attention mechanism to draw global dependencies between input and output. The Transformer allows for significantly more parallelization and can reach a new state of the art in translation quality after being trained for as little as twelve hours on eight P100 GPUs. Recurrent models inherently preclude parallelization within training examples, which becomes critical at longer sequence lengths, as memory constraints limit batching across examples.
+
+--- Page 2 ---
+Methodology & Model Architecture:
+The Transformer follows an encoder-decoder architecture using stacked self-attention and point-wise, fully connected layers. The encoder is composed of a stack of 6 identical layers. Each layer has two sub-layers: a multi-head self-attention mechanism, and a simple, position-wise fully connected feed-forward network. We employ residual connections around each of the two sub-layers, followed by layer normalization. Multi-head attention allows the model to jointly attend to information from different representation subspaces at different positions. We compute Scaled Dot-Product Attention as Attention(Q, K, V) = softmax(QK^T / sqrt(d_k)) V. Positional encodings are added to the input embeddings at the bottoms of the encoder and decoder stacks to inject information about the relative or absolute position of the tokens in the sequence.
+
+--- Page 3 ---
+Key Findings & Experimental Results:
+On the WMT 2014 English-to-German translation task, the big Transformer model establishes a new state-of-the-art BLEU score of 28.4, outperforming the existing best ensembles, including recurrent and convolutional models, by over 2.0 BLEU. On the WMT 2014 English-to-French translation task, our model achieves a BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature. Training was faster than any previously published translation models, showing that self-attention alone yields superior empirical translation fidelity.
+
+--- Page 4 ---
+Limitations:
+The primary limitation of the self-attention mechanism is its quadratic computational and memory complexity, O(n^2), with respect to sequence length n. Because the attention matrix compares every token to every other token, applying the vanilla Transformer to extremely long documents or high-resolution images creates substantial memory bottlenecks. Additionally, unlike recurrent neural networks, the Transformer lacks an innate continuous recurrence mechanism, requiring explicit positional encodings which may struggle to extrapolate beyond the maximum sequence length seen during training.
+
+--- Page 5 ---
+Research Gaps & Future Work:
+Critical research gaps include developing sub-quadratic or linear attention mechanisms that preserve full expressive capacity while processing million-token sequences. Furthermore, extending self-attention architectures beyond discrete text to multi-modal domains such as audio, vision, and video synthesis remains an open research frontier. The authors plan to investigate restricted, local attention mechanisms and dynamic sparse attention patterns to bridge this gap.

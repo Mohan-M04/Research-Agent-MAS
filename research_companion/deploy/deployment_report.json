@@ -1,0 +1,101 @@
+{
+  "timestamp": "2026-10-14T09:50:18Z",
+  "validate_only": true,
+  "credentials_present": false,
+  "total": 13,
+  "ok": 13,
+  "failed": 0,
+  "assets": [
+    {
+      "asset_type": "knowledge_base",
+      "name": "research_papers_kb",
+      "status": "ok",
+      "detail": "ChromaDB at ./knowledge_base/chroma_db, 3 chunks indexed",
+      "phase": "local-validation"
+    },
+    {
+      "asset_type": "tool",
+      "name": "extract_pdf_text",
+      "status": "ok",
+      "detail": "callable \u2014 tools.extract_pdf_text",
+      "phase": "local-validation"
+    },
+    {
+      "asset_type": "tool",
+      "name": "chunk_and_index_documents",
+      "status": "ok",
+      "detail": "callable \u2014 tools.chunk_and_index_documents",
+      "phase": "local-validation"
+    },
+    {
+      "asset_type": "tool",
+      "name": "retrieve_relevant_chunks",
+      "status": "ok",
+      "detail": "callable \u2014 tools.retrieve_relevant_chunks",
+      "phase": "local-validation"
+    },
+    {
+      "asset_type": "tool",
+      "name": "generate_cited_answer",
+      "status": "ok",
+      "detail": "callable \u2014 tools.generate_cited_answer",
+      "phase": "local-validation"
+    },
+    {
+      "asset_type": "tool",
+      "name": "generate_literature_review",
+      "status": "ok",
+      "detail": "callable \u2014 tools.generate_literature_review",
+      "phase": "local-validation"
+    },
+    {
+      "asset_type": "agent",
+      "name": "pdf_ingestion_agent",
+      "status": "ok",
+      "detail": "definition valid, model=ibm/granite-3-3-8b-instruct",
+      "phase": "local-validation"
+    },
+    {
+      "asset_type": "agent",
+      "name": "rag_retrieval_agent",
+      "status": "ok",
+      "detail": "definition valid, model=ibm/granite-3-3-8b-instruct",
+      "phase": "local-validation"
+    },
+    {
+      "asset_type": "agent",
+      "name": "research_qa_agent",
+      "status": "ok",
+      "detail": "definition valid, model=ibm/granite-3-3-8b-instruct",
+      "phase": "local-validation"
+    },
+    {
+      "asset_type": "agent",
+      "name": "literature_review_agent",
+      "status": "ok",
+      "detail": "definition valid, model=ibm/granite-3-3-8b-instruct",
+      "phase": "local-validation"
+    },
+    {
+      "asset_type": "agent",
+      "name": "research_coordinator",
+      "status": "ok",
+      "detail": "definition valid, model=ibm/granite-3-3-8b-instruct",
+      "phase": "local-validation"
+    },
+    {
+      "asset_type": "workflow",
+      "name": "research_companion_workflow",
+      "status": "ok",
+      "detail": "6 steps, 4 agents",
+      "phase": "local-validation"
+    },
+    {
+      "asset_type": "coordinator_ping",
+      "name": "out_of_scope_query",
+      "status": "ok",
+      "detail": "intent=out_of_scope, response correctly refused",
+      "phase": "local-validation"
+    }
+  ]
+}

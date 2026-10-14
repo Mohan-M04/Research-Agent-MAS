@@ -1,0 +1,16 @@
+kind: knowledge_base
+spec_version: v1
+
+name: research_papers_kb
+description: >
+  Vector knowledge base for Research Companion. Stores chunked text from
+  uploaded research papers, including paper title, authors, publication year,
+  and page/section references. Used by all retrieval and Q&A agents.
+
+# Built-in Milvus vector index (managed by watsonx Orchestrate)
+vector_index:
+  embeddings_model_name: ibm/slate-125m-english-rtrvr
+  chunk_size: 512
+  chunk_overlap: 64
+  limit: 8
+  extraction_strategy: standard

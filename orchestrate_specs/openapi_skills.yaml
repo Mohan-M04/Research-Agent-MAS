@@ -1,0 +1,138 @@
+openapi: 3.0.1
+info:
+  title: Research Companion Skills for watsonx Orchestrate
+  description: Multi-agent research assistant skills for IBM Build-a-Bot (BoB) Problem Statement 7.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Localhost Port 3000 Endpoint
+paths:
+  /tools/extract_pdf_text:
+    post:
+      summary: Extract text, title, and metadata from uploaded PDF
+      operationId: extract_pdf_text
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                file_path_or_bytes:
+                  type: string
+                file_name:
+                  type: string
+              required:
+                - file_path_or_bytes
+      responses:
+        '200':
+          description: Extracted text and metadata
+  /tools/chunk_and_index_documents:
+    post:
+      summary: Clean, chunk, and index paper into research_papers_kb
+      operationId: chunk_and_index_documents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                extracted_data:
+                  type: object
+                chunk_size:
+                  type: integer
+                  default: 500
+                chunk_overlap:
+                  type: integer
+                  default: 80
+              required:
+                - extracted_data
+      responses:
+        '200':
+          description: Chunking and indexing status
+  /tools/retrieve_relevant_chunks:
+    post:
+      summary: Retrieve top relevant chunks from research_papers_kb
+      operationId: retrieve_relevant_chunks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                top_k:
+                  type: integer
+                  default: 5
+                paper_filter:
+                  type: string
+              required:
+                - query
+      responses:
+        '200':
+          description: Retrieved chunks with citations
+  /tools/generate_cited_answer:
+    post:
+      summary: Answer question using only retrieved chunks with citations
+      operationId: generate_cited_answer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                retrieved_chunks:
+                  type: array
+                  items:
+                    type: object
+              required:
+                - query
+                - retrieved_chunks
+      responses:
+        '200':
+          description: Concise cited answer or refusal message
+  /tools/generate_literature_review:
+    post:
+      summary: Generate 6-section literature review across all papers
+      operationId: generate_literature_review
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                domain_topic:
+                  type: string
+                  default: "Comparative Study of Uploaded Research Papers"
+      responses:
+        '200':
+          description: Full structured literature review markdown
+  /workflow/research_companion_workflow:
+    post:
+      summary: Execute complete agentic research workflow
+      operationId: research_companion_workflow
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_request:
+                  type: string
+                file_names:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - user_request
+      responses:
+        '200':
+          description: Final agentic response

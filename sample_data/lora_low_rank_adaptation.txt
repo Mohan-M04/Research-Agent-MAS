@@ -1,0 +1,23 @@
+LoRA: Low-Rank Adaptation of Large Language Models
+Authors: Edward J. Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, Weizhu Chen
+Year: 2021
+
+--- Page 1 ---
+Abstract & Introduction:
+An important paradigm of natural language processing consists of large-scale pre-training on general domain data and adaptation to specific tasks or domains. As language models grow to hundreds of billions of parameters, full fine-tuning becomes increasingly prohibitive because it requires retraining all model parameters and storing separate model checkpoints for each downstream task. We propose Low-Rank Adaptation, or LoRA, which freezes the pre-trained model weights and injects trainable rank decomposition matrices into each layer of the Transformer architecture, greatly reducing the number of trainable parameters for downstream tasks.
+
+--- Page 2 ---
+Methodology & Model Architecture:
+Taking inspiration from Li et al. (2018) showing that learned over-parametrized models in fact reside on a low intrinsic dimension, we hypothesize that the updates to the weights also have a low intrinsic rank during adaptation. For a pre-trained weight matrix W_0 in R^(d x k), we constrain its update by representing Delta W with a low-rank decomposition: Delta W = B * A, where B in R^(d x r), A in R^(r x k), and the rank r << min(d, k). During training, W_0 is frozen and receives no gradient updates, while A and B contain trainable parameters. For input x, the modified forward pass yields h = W_0 * x + (alpha / r) * B * A * x. When switching tasks, no additional inference latency is introduced because Delta W can be directly merged into W_0.
+
+--- Page 3 ---
+Key Findings & Experimental Results:
+LoRA can reduce the number of trainable parameters by 10,000 times and GPU memory requirements by 3 times compared to full fine-tuning of GPT-3 175B. On the GLUE benchmark with RoBERTa and DeBERTa, and on domain-specific benchmarks with GPT-2 and GPT-3, LoRA performs on par with or better than full fine-tuning, while using only 0.01% of the trainable parameters. Furthermore, training throughput is increased by 25% due to avoiding gradient computation for the vast majority of parameters.
+
+--- Page 4 ---
+Limitations:
+The primary limitation of LoRA is that a fixed rank r must be predetermined prior to fine-tuning, which may allocate too few parameters for complex task adaptations or too many for trivial tasks. Additionally, when serving multiple tasks concurrently with different LoRA adapters in the same batch, dynamically switching adapter weights introduces slight batching complexity compared to serving a single unified model.
+
+--- Page 5 ---
+Research Gaps & Future Work:
+Future research directions include adaptive dynamic rank allocation across layers based on gradient magnitude or singular value spectra. Another open gap is investigating the combination of 4-bit/8-bit post-training quantization with low-rank adaptation (QLoRA) to allow fine-tuning 70B+ parameter models on consumer hardware, and studying the theoretical bounds of intrinsic dimension across non-linguistic domains.

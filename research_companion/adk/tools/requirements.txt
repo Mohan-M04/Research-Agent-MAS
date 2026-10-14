@@ -1,0 +1,15 @@
+# ADK tool runtime dependencies for Research Companion
+# Used with: orchestrate tools import --requirements-file adk/tools/requirements.txt
+
+# PDF extraction
+pymupdf>=1.23.0
+PyPDF2>=3.0.1
+
+# Vector store (local ChromaDB for dev; replaced by native Milvus in production)
+chromadb>=0.4.22
+
+# IBM watsonx.ai SDK (embeddings + LLM generation)
+ibm-watsonx-ai>=1.0.4
+
+# Utilities
+python-dotenv>=1.0.0
